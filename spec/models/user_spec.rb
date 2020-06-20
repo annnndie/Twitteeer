@@ -2,17 +2,26 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context "user data validation" do
-    it "validates email" do
-      u = User.new(email: 'yu')
-
+    it "validate user" do
+      u = User.new(email: 'yu@andy.io')
       expect(u).to be_valid
-      expect(u.email).to eq "yu"
     end
 
-    it "invalidates email" do
+    it "invalidate user" do
       u = User.new
+      expect(u).not_to be_valid
+    end
+
+    it "is invalid email format" do
+      u = User.new(email: 'yu')
 
       expect(u).not_to be_valid
+    end
+
+    it "is valid email format" do
+      u = User.new(email: 'loveyu@andyu.io')
+
+      expect(u).to be_valid
     end
   end
 end
