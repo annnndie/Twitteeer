@@ -23,5 +23,16 @@ RSpec.describe User, type: :model do
 
       expect(u).to be_valid
     end
+
+    it "unique email" do
+      User.create(email: 'someone@andyu.io')
+
+      u = User.new(email: 'someone@andyu.io')
+
+      u.save
+
+      expect(u).not_to be_valid
+    end
+    
   end
 end
