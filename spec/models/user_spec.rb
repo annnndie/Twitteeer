@@ -38,9 +38,21 @@ RSpec.describe User, type: :model do
 
     it "password confirmation" do
       u = build(:user, password_confirmation: '222222')
-      
+
       expect(u).not_to be_valid
     end
-    
+
+    it "unique account" do
+      u = create(:user)
+      another = build(:user, :test2_email)
+
+      expect(another).not_to be_valid
+    end
+
+    it "account length" do
+      u = build(:user, account: 'aaa')
+      expect(u).not_to be_valid
+    end
+
   end
 end

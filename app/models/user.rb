@@ -5,5 +5,8 @@ class User < ApplicationRecord
                     uniqueness: true
   validates :password, length: { minimum: 6 }, presence: true
   validates :password, confirmation: true
-                
+  validates :account, presence: true, 
+                      uniqueness: true,
+                      length: { minimum: 4 }
+
 end
