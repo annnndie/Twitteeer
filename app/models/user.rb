@@ -3,6 +3,7 @@ class User < ApplicationRecord
                     format: { with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                               message: "格式無效" },
                     uniqueness: true
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, presence: true
+  validates :password, confirmation: true
                 
 end

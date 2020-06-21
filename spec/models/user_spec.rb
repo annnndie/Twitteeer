@@ -23,8 +23,8 @@ RSpec.describe User, type: :model do
     it "unique email" do
       u = create(:user)
 
-      another = u.dup
       # 用 dup 複製一次 u 的 create 動作做驗證
+      another = u.dup
       another.save
 
       expect(another).not_to be_valid
@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
     it "password length" do
       u = build(:user, :invalid_password)
 
+      expect(u).not_to be_valid
+    end
+
+    it "password confirmation" do
+      u = build(:user, password_confirmation: '222222')
+      
       expect(u).not_to be_valid
     end
     
