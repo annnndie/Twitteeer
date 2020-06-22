@@ -42,6 +42,13 @@ RSpec.describe User, type: :model do
       expect(u).not_to be_valid
     end
 
+    it "password over 72 bytes" do
+      over_bytes_password = '2'.ljust(80,'2')
+      u = build(:user, password: over_bytes_password )
+
+      expect(u).not_to be_valid
+    end
+
     it "unique account" do
       u = create(:user)
       another = build(:user, :test2_email)
