@@ -3,6 +3,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = current_user.tweets.all
+    @tweet = Tweet.new
   end
 
   def create
