@@ -1,1 +1,13 @@
-woooo
+<div>
+  <%= form_for @tweet, method: 'post' do |f| %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+  <% end %>
+</div>
+<div>
+  <% @tweets.each do |tweet| %>
+    <%= tweet.user.account %>
+    <%= tweet.content %>
+  <% end %>
+</div>
