@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'slim', '~> 4.1'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 

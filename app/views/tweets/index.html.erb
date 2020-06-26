@@ -1,13 +1,25 @@
 <div>
   <%= form_for @tweet, method: 'post' do |f| %>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+    <div class="tweet-input">
+      <%= f.text_area :content, placeholder: '有什麼新鮮事？' %>
+    </div>
     <%= f.submit %>
   <% end %>
 </div>
 <div>
   <% @tweets.each do |tweet| %>
-    <%= tweet.user.account %>
-    <%= tweet.content %>
+    <div class="tweet-user">
+      <%= tweet.user.nickname %>
+      <%= '@' + tweet.user.account %>
+    </div>
+    <div class="tweet-content">
+      <%= tweet.content %>
+    </div>
+    <div class="tweet-icon">
+      <a href="#">reply</a>
+      <a href="#">retweet</a>
+      <a href="#">like</a>
+      <%= link_to 'delete', tweet_path(tweet.id), method: 'delete', data: {confirm: '要刪除推文嗎？'} %>
+    </div>
   <% end %>
 </div>
