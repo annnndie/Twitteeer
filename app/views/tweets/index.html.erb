@@ -1,4 +1,4 @@
-<div>
+<div class="tweet-insert mb-4 pb-3">
   <%= form_for @tweet, method: 'post' do |f| %>
     <div class="tweet-input">
       <%= f.text_area :content, placeholder: '有什麼新鮮事？' %>
@@ -6,20 +6,30 @@
     <%= f.submit %>
   <% end %>
 </div>
-<div>
-  <% @tweets.each do |tweet| %>
-    <div class="tweet-user">
-      <%= tweet.user.nickname %>
-      <%= '@' + tweet.user.account %>
+<% @tweets.each do |tweet| %>
+  <div class="tweet-info border-bottom py-2">
+    <div class="d-flex">
+      <div class="tweet-avatar py-2 px-3">
+        <div class="avatar">
+        </div>
+      </div>
+      <div class="tweet-container">
+        <div class="tweet-user">
+          <span class="user-nickname"><%= tweet.user.nickname %></span>
+          <span class="user-account"><%= '@' + tweet.user.account %></span>
+        </div>
+        <div class="tweet-content py-1">
+          <%= tweet.content %>
+        </div>
+        <div class="tweet-icon">
+          <a href="#" class="pr-4"><i class="far fa-comment"></i></a>
+          <a href="#" class="pr-4"><i class="fas fa-retweet"></i></a>
+          <a href="#" class="pr-4"><i class="far fa-heart"></i></a>
+          <%= link_to tweet_path(tweet.id), method: 'delete', data: {confirm: '要刪除推文嗎？'} do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>  
     </div>
-    <div class="tweet-content">
-      <%= tweet.content %>
-    </div>
-    <div class="tweet-icon">
-      <a href="#">reply</a>
-      <a href="#">retweet</a>
-      <a href="#">like</a>
-      <%= link_to 'delete', tweet_path(tweet.id), method: 'delete', data: {confirm: '要刪除推文嗎？'} %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
