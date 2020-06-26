@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :find_tweet, only: [:show, :destroy]
+  before_action :authenticate_user!
 
   def index
     @tweets = current_user.tweets.all
