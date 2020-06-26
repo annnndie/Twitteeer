@@ -7,6 +7,8 @@ class User < ApplicationRecord
                       uniqueness: true, 
                       length: { minimum: 4, maximum: 15 },
                       format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :nickname, presence: true,
+                       length: { maximum: 50 }
 
   # relation
   has_many :tweets
