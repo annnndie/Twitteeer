@@ -10,9 +10,19 @@
   </head>
 
   <body>
-    <%= render 'shares/navbar' %>
-    <div class="container">
-      <%= yield %>
+    <div class="d-flex">
+      <div>
+        <%= render 'shares/left-nav' %>
+      </div>
+      <div class="w-100 border-left border-right">
+        <%= render 'shares/navbar' %>
+        <div class="w-100">
+          <%= yield %>
+        </div>
+      </div>
+      <div>
+        <%= render 'shares/friend-nav' %>
+      </div>
     </div>
   </body>
 </html>

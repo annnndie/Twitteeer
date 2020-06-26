@@ -13,7 +13,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'slim', '~> 4.1'
-gem 'html2slim', '~> 0.2.0'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -38,6 +37,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'html2slim', '~> 0.2.0'
 end
 
 group :test do
