@@ -1,12 +1,7 @@
 div class="friend-nav"
   ul class="list-group mx-2 my-2"
+   - @can_follow_user.each do |user|
     li class="list-group-item"
-      |Cras justo odio
-    li class="list-group-item"
-      |Dapibus ac facilisis in
-    li class="list-group-item"
-      |Morbi leo risus
-    li class="list-group-item"
-      |Porta ac consectetur ac
-    li class="list-group-item"
-      |Vestibulum at eros
+      = user.nickname 
+      = user.email
+
