@@ -15,7 +15,9 @@ class User < ApplicationRecord
   # 資料來源：https://dev.to/knheidorn/rails-crash-course-building-follower-following-relationship-4kjl
   has_many :active_relationships, class_name: "Relationship", foreign_key:"follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key:"followed_id", dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed_user
-  has_many :follower, through: :passive_relationships, source: :follower_user
+  has_many :followings, through: :active_relationships, source: :followed_user
+  has_many :followers, through: :passive_relationships, source: :follower_user
+
+  scope :can_followed_user, ->  (user){ where.not(id: user.followings).where.not(id: user.id).limit(3).order("RANDOM()") }
 
 end
