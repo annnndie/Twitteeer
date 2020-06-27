@@ -4,4 +4,5 @@ div class="friend-nav"
     li class="list-group-item"
       = user.nickname 
       = user.email
+      = link_to '跟隨', relationships_path(id: user.id), method: 'post'
 

@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :who_can_follow
 
   def who_can_follow
-    @can_follow_user = User.where('id != ?', current_user.id).sample(3) if current_user
+    # https://coderwall.com/p/i34iza/rails-quick-tips-random-records
+    @can_follow_user = User.where('id != ? AND ?', current_user.id, current_user.following.ids).limit(3).order("RANDOM()") if current_user
   end
 
   private
