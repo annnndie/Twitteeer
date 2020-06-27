@@ -1,12 +1,16 @@
-<div class="tweet-insert mb-4 pb-3">
-  <%= form_for @tweet, method: 'post' do |f| %>
-    <div class="tweet-input">
-      <%= f.text_area :content, placeholder: '有什麼新鮮事？' %>
+<div class="tweet-insert mb-4 pb-3 d-flex justify-content-between">
+  <div class="tweet-avatar my-2 mx-3">
+    <div class="avatar">
     </div>
-    <%= f.submit %>
+  </div>
+  <%= form_for @tweet, method: 'post', html: { class: 'tweet-input' } do |f| %>
+    <div class="my-2">
+      <%= f.text_area :content, placeholder: '有什麼新鮮事？', class: 'form-control' %>
+    </div>
+    <%= f.submit '推文', class: 'submit-btn px-3 py-2 mr-3' %>
   <% end %>
 </div>
-<% @tweets.each do |tweet| %>
+<% @tweets.order(id: :desc).each do |tweet| %>
   <div class="tweet-info border-bottom py-2">
     <div class="d-flex">
       <div class="tweet-avatar py-2 px-3">

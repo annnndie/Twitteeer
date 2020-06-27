@@ -10,9 +10,9 @@
   </head>
 
   <body>
-    <div class="d-flex">
+    <div class="d-flex flex-nowrap">
       <div>
-        <%= render 'shares/left-nav' %>
+        <%= render 'shares/left-nav' if user_signed_in? %>
       </div>
       <div class="w-100 border-left border-right">
         <%= render 'shares/navbar' %>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div>
-        <%= render 'shares/friend-nav' %>
+        <%= render 'shares/friend-nav' if user_signed_in? %>
       </div>
     </div>
   </body>
