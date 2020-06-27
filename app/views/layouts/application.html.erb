@@ -10,17 +10,18 @@
   </head>
 
   <body>
-    <div class="d-flex flex-nowrap">
-      <div>
+    <%= render 'shares/flash' %>
+    <div class="d-flex flex-nowrap w-100">
+      <div class="left-nav">
         <%= render 'shares/left-nav' if user_signed_in? %>
       </div>
       <div class="w-100 border-left border-right">
         <%= render 'shares/navbar' %>
-        <div class="w-100">
+        <div class="w-100 main-container">
           <%= yield %>
         </div>
       </div>
-      <div>
+      <div class="friend-nav">
         <%= render 'shares/friend-nav' if user_signed_in? %>
       </div>
     </div>

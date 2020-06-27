@@ -1,5 +1,7 @@
-  div class="left-nav"
+  div 
     div class="twitter-logo px-3 py-2 text-center"
       <i class="fab fa-twitter"></i>
+    div class=""
+      = link_to '追隨', relationships_path
     div class="text-center px-3"
       = link_to "登出@" + current_user.account, destroy_user_session_path, method: 'delete', class: 'text-nowrap'

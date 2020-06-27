@@ -18,6 +18,6 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed_user
   has_many :followers, through: :passive_relationships, source: :follower_user
 
-  scope :can_followed_user, ->  (user){ where.not(id: user.followings).where.not(id: user.id).limit(3).order("RANDOM()") }
+  scope :can_followed_user, -> (user){ where.not(id: user.followings).where.not(id: user.id).limit(3).order("RANDOM()") }
 
 end
