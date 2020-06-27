@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :who_can_follow
 
   def who_can_follow
-    @can_follow_user = User.where('id != ?', current_user.id).sample(3)
+    @can_follow_user = User.where('id != ?', current_user.id).sample(3) if current_user
   end
 
   private
