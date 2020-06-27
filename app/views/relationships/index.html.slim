@@ -1,0 +1,16 @@
+h3
+  | 正在跟隨
+- @followings.each do | following |
+  div
+    = User.find_by(id: following.id).nickname
+    = link_to '取消追蹤', relationship_path(following.id), method: 'delete'
+
+h3
+  | 被誰跟隨
+- @followers.each do | follower |
+  div
+    = User.find_by(id: follower.id).nickname
+    - if current_user.active_relationships.find_by(followed_id: follower.id)
+      = link_to '取消追蹤', relationship_path(follower.id), method: 'delete'
+    - else
+      = link_to '跟隨', relationships_path(follower.id), method: 'post'
