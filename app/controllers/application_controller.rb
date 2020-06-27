@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def who_can_follow
     # https://coderwall.com/p/i34iza/rails-quick-tips-random-records
-    @can_follow_user = User.where('id != ? AND ?', current_user.id, current_user.following.ids).limit(3).order("RANDOM()") if current_user
+    @can_follow_user = User.can_followed_user(current_user)
   end
 
   private
