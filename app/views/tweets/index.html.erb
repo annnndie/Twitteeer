@@ -10,7 +10,8 @@
     <%= f.submit '推文', class: 'submit-btn px-3 py-2 mr-3' %>
   <% end %>
 </div>
-<% @tweets.order(id: :desc).each do |tweet| %>
+
+<% @tweets.each do |tweet| %>
   <div class="tweet-info border-bottom py-2">
     <div class="d-flex">
       <div class="tweet-avatar py-2 px-3">
@@ -29,9 +30,9 @@
           <a href="#" class="pr-4"><i class="far fa-comment"></i></a>
           <a href="#" class="pr-4"><i class="fas fa-retweet"></i></a>
           <a href="#" class="pr-4"><i class="far fa-heart"></i></a>
-          <%= link_to tweet_path(tweet.id), method: 'delete', data: {confirm: '要刪除推文嗎？'} do %>
+          <%= link_to tweet, method: 'delete', data: {confirm: '要刪除推文嗎？'} do %>
             <i class="far fa-trash-alt"></i>
-          <% end %>
+          <% end if tweet.owned_by(current_user) %>
         </div>
       </div>  
     </div>

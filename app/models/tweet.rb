@@ -4,4 +4,8 @@ class Tweet < ApplicationRecord
                       length: { maximum: 280 }
   # relation
   belongs_to :user
+
+  def owned_by(u) 
+    u === self.user
+  end
 end

@@ -1,16 +1,18 @@
-h3
+h4
   | 正在跟隨
-- @followings.each do | following |
-  div
-    = User.find_by(id: following.id).nickname
-    = link_to '取消追蹤', relationship_path(following.id), method: 'delete'
+ul
+  - @followings.each do | user |
+    li
+      = user.nickname
+      = link_to '取消追蹤', unfollow_user_path(user), method: 'delete'
 
-h3
+h4
   | 被誰跟隨
-- @followers.each do | follower |
-  div
-    = User.find_by(id: follower.id).nickname
-    - if current_user.active_relationships.find_by(followed_id: follower.id)
-      = link_to '取消追蹤', relationship_path(follower.id), method: 'delete'
-    - else
-      = link_to '跟隨', relationships_path(follower.id), method: 'post'
+ul  
+  - @followers.each do | user |
+    div
+      = user.nickname
+      - if current_user.active_relationships.find_by(followed_id: user.id)
+        = link_to '取消追蹤', unfollow_user_path(user), method: 'delete'
+      - else
+        = link_to '跟隨', follow_user_path(user), method: 'patch'

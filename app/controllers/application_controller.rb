@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :who_can_follow
-
-  def who_can_follow
-    # https://coderwall.com/p/i34iza/rails-quick-tips-random-records
-    @can_follow_user = User.can_followed_user(current_user) if current_user
-  end
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:account, :nickname])
+  def record_not_found
+    render file: 'public/404.html', status: :not_found, layout: false
   end
 end
