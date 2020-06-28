@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed_user
   has_many :followers, through: :passive_relationships, source: :follower_user
 
-  scope :can_followed_user, -> (user){ where.not(id: user.followings).where.not(id: user.id).limit(3).order("RANDOM()") }
+  def recommend_users(n = 3)
+    excluded_list = followings.ids.push(id).uniq
+    User.where.not(followings: excluded_list).limit(n).order("RANDOM()")
+  end
 
+  def feeds
+    users = followings.ids.push(id).uniq
+    Tweet.where(user: users)
+  end
 end

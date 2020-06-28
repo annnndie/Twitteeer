@@ -1,8 +1,8 @@
 div
   ul class="list-group mx-2 my-2"
-   - @can_follow_user.each do |user|
-    li class="list-group-item"
+   - current_user.recommend_users.each do |user|
+    li.recommend_user class="list-group-item"
       = user.nickname 
       = user.email
-      = link_to '跟隨', relationships_path(id: user.id), method: 'post'
+      = link_to '跟隨', follow_user_path(user), method: 'patch'
 
