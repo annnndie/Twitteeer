@@ -2,13 +2,24 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  
-  resources :tweets, except: [:edit, :update, :new]
+
+  resources :tweets, except: [:edit, :update, :new] 
   resources :relationships, only: [:index]
   resources :users, only: [] do
     member do
       patch :follow
       delete :unfollow
+    end
+  end
+
+  # APIs
+  namespace :api do
+    namespace :v1 do
+      resources :tweets, only: [] do
+        member do
+          patch :like
+        end
+      end
     end
   end
 
