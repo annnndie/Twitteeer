@@ -14,7 +14,7 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to root_path, notice: '已發布貼文'
     else 
-      render :new
+      render :index
     end
   end
 
