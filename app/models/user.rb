@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed_user
   has_many :followers, through: :passive_relationships, source: :follower_user
   has_many :likes
-  has_many :tweets, through: :likes
+  has_many :i_like_tweets, class_name: "Tweet", through: :likes, source: :tweet
 
   def recommend_users(n = 3)
     excluded_list = followings.ids.push(id).uniq
